@@ -31,10 +31,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity ProgramCounter is
 	Port (CLK : in STD_LOGIC;
-			NEW_PC: in STD_LOGIC_VECTOR (9 downto 0);
-			--INC: in STD_LOGIC_VECTOR (9 downto 0);
-			--PC_ENABLE: in STD_LOGIC;
-			PC_OUT: out STD_LOGIC_VECTOR (9 downto 0));
+			NEW_PC: in STD_LOGIC_VECTOR (9 downto 0):= (OTHERS => '0');
+			PC_OUT: out STD_LOGIC_VECTOR (9 downto 0):= (OTHERS => '0'));
 			
 end ProgramCounter;
 

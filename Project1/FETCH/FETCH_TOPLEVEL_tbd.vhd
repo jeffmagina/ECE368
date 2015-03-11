@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer:
 --
--- Create Date:   18:45:01 03/04/2015
+-- Create Date:   13:26:06 03/11/2015
 -- Design Name:   
--- Module Name:   C:/Users/Jeff Magina/Desktop/ECE 368/Project1/FETCH/FETCH/FETCH_TOPLEVEL_tbd.vhd
+-- Module Name:   C:/Users/Jeff Magina/Documents/GitHub/ECE368/Project1/FETCH/FETCH_TOPLEVEL_tbd.vhd
 -- Project Name:  FETCH
 -- Target Device:  
 -- Tool versions:  
@@ -43,7 +43,8 @@ ARCHITECTURE behavior OF FETCH_TOPLEVEL_tbd IS
     PORT(
          CLK : IN  std_logic;
          DATAIN : IN  std_logic_vector(15 downto 0);
-         INST_OUT : OUT  std_logic_vector(15 downto 0)
+         INST_OUT : OUT  std_logic_vector(15 downto 0);
+         WE : IN  std_logic
         );
     END COMPONENT;
     
@@ -51,12 +52,13 @@ ARCHITECTURE behavior OF FETCH_TOPLEVEL_tbd IS
    --Inputs
    signal CLK : std_logic := '0';
    signal DATAIN : std_logic_vector(15 downto 0) := (others => '0');
+   signal WE : std_logic := '0';
 
  	--Outputs
    signal INST_OUT : std_logic_vector(15 downto 0);
 
    -- Clock period definitions
-   constant CLK_period : time := 20 ns;
+   constant CLK_period : time := 10 ns;
  
 BEGIN
  
@@ -64,7 +66,8 @@ BEGIN
    uut: FETCH_TOPLEVEL PORT MAP (
           CLK => CLK,
           DATAIN => DATAIN,
-          INST_OUT => INST_OUT
+          INST_OUT => INST_OUT,
+          WE => WE
         );
 
    -- Clock process definitions
@@ -84,15 +87,22 @@ BEGIN
       wait for 20 ns;	
 		
 		report "Start Debug Test Bench!" severity Note;
+		WE <= '1';
 		DATAIN <= x"0FC0";
       wait for CLK_period;
+		
+		WE <= '1';
 		DATAIN <= x"1671";
 		wait for CLK_period;
+		
+		WE <= '1';
 		DATAIN <= x"467A";
 		wait for CLK_period;
+		
+		WE <= '1';
 		DATAIN <= x"0682";
 		wait for CLK_period;
-      -- insert stimulus here 
+		
 		wait for 100 ns;
       wait;
    end process;

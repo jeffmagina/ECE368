@@ -20,15 +20,11 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use work.all;
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
+
 use IEEE.NUMERIC_STD.ALL;
 Use ieee.std_logic_unsigned.all;
 Use ieee.std_logic_arith.all;
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
+
 
 entity FETCH_TOPLEVEL is
 Port ( CLK : in STD_LOGIC;
@@ -40,7 +36,6 @@ end FETCH_TOPLEVEL;
 architecture Structural of FETCH_TOPLEVEL is
 
 	signal instruction : STD_LOGIC_VECTOR (15 downto 0) := (OTHERS => '0');
-	--signal DATAIN : STD_LOGIC_VECTOR (15 downto 0) := (OTHERS => '0');
 	signal PC : STD_LOGIC_VECTOR (9 downto 0) := (OTHERS => '0');
 	signal INC : STD_LOGIC_VECTOR (9 downto 0) := (OTHERS => '0');
 begin

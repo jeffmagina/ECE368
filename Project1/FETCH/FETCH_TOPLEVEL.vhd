@@ -30,7 +30,7 @@ entity FETCH_TOPLEVEL is
 Port ( CLK : in STD_LOGIC;
 		 DATAIN : in STD_LOGIC_VECTOR( 15 downto 0);
 		 INST_OUT : out STD_LOGIC_VECTOR( 15 downto 0);
-		 WE : in STD_LOGIC_VECTOR);--INC : out STD_LOGIC_VECTOR(9 downto 0
+		 WE : in STD_LOGIC);
 end FETCH_TOPLEVEL;
 
 architecture Structural of FETCH_TOPLEVEL is

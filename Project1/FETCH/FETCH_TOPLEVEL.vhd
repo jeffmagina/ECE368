@@ -45,11 +45,13 @@ begin
 				 INST_OUT => INST_OUT);
 				 
 	U2: entity work.INST_MEM
-   port map( CLKA  => CLK,
+   port map(  CLKA  => CLK,
               WEA(0)=> WE,
               ADDRA => PC,  -- (9 DOWNTO 0)
-              DINA  => PC,   -- (15 DOWNTO 0)
-              DOUTA => instruction); -- (15 DOWNTO 0)
+              DINA  => DATAIN,   -- (15 DOWNTO 0)
+              CLKB  => CLK,
+              ADDRB => PC,  -- (9 DOWNTO 0)
+              DOUTB => instruction);
 				  
 	INC <= (PC + "0000000001");	  
 	

@@ -25,8 +25,7 @@ entity decode is
 			INST_IN  : IN STD_LOGIC_VECTOR(15 downto 0);
 			OPCODE 	: OUT STD_LOGIC_VECTOR(3 downto 0);
 			REG_A 	: OUT STD_LOGIC_VECTOR(3 downto 0);
-			REG_B 	: OUT STD_LOGIC_VECTOR(3 downto 0);
-			IMMEDIATE: OUT STD_LOGIC_VECTOR(3 downto 0)
+			IMMEDIATE: OUT STD_LOGIC_VECTOR(7 downto 0)
 			);
 end decode;
 
@@ -38,8 +37,7 @@ begin
 		IF(CLK'EVENT and CLK = '0') then
 			OPCODE    <= INST_IN(15 downto 12);
 			REG_A     <= INST_IN(11 downto 8);
-			REG_B     <= INST_IN(7 downto 4);
-			IMMEDIATE <= INST_IN(3 downto 0);
+			IMMEDIATE <= INST_IN(7 downto 0);
 		end IF;
 	end Process;
 end Behavioral;

@@ -33,6 +33,7 @@ use work.all;
 entity INST_REG is
 	Port( CLK : in STD_LOGIC;
 		INST : in STD_LOGIC_VECTOR (15 downto 0);
+		INST_ENB : in STD_LOGIC;
 		--OFFSET: in STD_LOGIC_VECTOR (15 downto 0);
 		INST_OUT: out STD_LOGIC_VECTOR (15 downto 0));
 		
@@ -41,9 +42,10 @@ end INST_REG;
 architecture Structrual of INST_REG is
 
 begin
-		U1: entity work.flip_flop
-		port map( CLK => CLK,
-					 D_IN => INST,
-					 D_OUT => INST_OUT);
+		U1: entity work.flipflop
+		port map( CLK      => CLK,
+					 INST_ENB => INST_ENB,
+					 D_IN     => INST,
+					 D_OUT    => INST_OUT);
 end Structrual;
 

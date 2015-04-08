@@ -26,21 +26,24 @@ Use ieee.std_logic_unsigned.all;
 Use ieee.std_logic_arith.all;
 
 
-entity FETCH_TOPLEVEL is
+entity FETCH is
 Port ( CLK : in STD_LOGIC;
 		 DATAIN : in STD_LOGIC_VECTOR( 15 downto 0);
+		 INST_ENB : IN STD_LOGIC;
 		 INST_OUT : out STD_LOGIC_VECTOR( 15 downto 0);
+		 PC_OUT : out STD_LOGIC_VECTOR(9 downto 0);
 		 WE : in STD_LOGIC);
-end FETCH_TOPLEVEL;
+end FETCH;
 
-architecture Structural of FETCH_TOPLEVEL is
+architecture Structural of FETCH is
 
 	signal instruction : STD_LOGIC_VECTOR (15 downto 0) := (OTHERS => '0');
 	signal PC : STD_LOGIC_VECTOR (9 downto 0) := (OTHERS => '0');
 	signal INC : STD_LOGIC_VECTOR (9 downto 0) := (OTHERS => '0');
 begin
-	U1: entity work.INST_REG
+U1: entity work.INST_REG
 	port map( CLK => CLK,
+				 INST_ENB => INST_ENB,
 				 INST => instruction, 
 				 INST_OUT => INST_OUT);
 				 
@@ -60,5 +63,6 @@ begin
 				  NEW_PC => INC,
 				  PC_OUT => PC);
 
+	PC_OUT <= PC;
 end Structural;
 

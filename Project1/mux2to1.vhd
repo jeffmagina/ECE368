@@ -23,9 +23,10 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity mux2to1 is
-    Port ( SEL : in  STD_LOGIC_VECTOR (2 downto 0);
-           DATA : in  STD_LOGIC_VECTOR (7 downto 0);
-           OUTPUT : out  STD_LOGIC);
+    Port ( SEL : in  STD_LOGIC;
+	        DATA_0 : in  STD_LOGIC_VECTOR (15 downto 0);
+           DATA_1 : in  STD_LOGIC_VECTOR (15 downto 0);
+           OUTPUT : out  STD_LOGIC_VECTOR (15 downto 0)	);
 end mux2to1;
 
 architecture Behavioral of mux2to1 is
@@ -33,9 +34,9 @@ architecture Behavioral of mux2to1 is
 begin
 
 with SEL SELect
-    OUTPUT<= DATA(1) when "1" ,
-             DATA(0) when "0" ,
-                 '0' when others;
+    OUTPUT<=   DATA_0 when '0' ,
+					DATA_1 when '1' ,
+                 x"0000" when others;
 end Behavioral;
 
 
